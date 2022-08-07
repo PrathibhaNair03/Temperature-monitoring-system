@@ -1,3 +1,4 @@
+#importing the details in the conf file here
 import conf
 from boltiot import Sms, Bolt
 import matplotlib.pyplot as plt
@@ -6,7 +7,7 @@ import numpy as np
 from datetime import datetime
 import statistics
 
-
+# setting the optimum range for the temperature of the room
 minimum_limit = 0
 maximum_limit = 30  
 d=[]
@@ -54,7 +55,7 @@ for p in range(0,5):
                 Time.append(t1)
                 tem.append(Temp)
             #sending message for opening door
-            #z score outlier
+            #z score outlier, calculate the sudden change in temperature to detect the opening of the door 
             list(data).append(Temp(value))
             #print("data:",d)
             mean1=statistics.mean(d)
@@ -82,11 +83,10 @@ for p in range(0,5):
             print ("Error occured: Below are the details")
             print (e)
     time.sleep(10)
+#code for plotting graph
 ypoints=np.array(tem)
 plt.plot_date(Time,ypoints)
 plt.xlabel('time')
 plt.ylabel('temperature')
 plt.title("temperature monitor")
 plt.show()
-
-        
